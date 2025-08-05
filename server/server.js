@@ -106,7 +106,8 @@ const fetchAndStoreDailySummaries = async () => {
     for (const [city, data] of Object.entries(cityGroupedData)) {
       const dailySummary = calculateDailySummary(data);
       try {
-       await axios.post(`${API_BASE_URL}/api/dailySummary`, dailySummary);
+     await axios.post(`${process.env.API_BASE_URL}/api/dailySummary`, dailySummary);
+
       } catch (error) {
         console.error(`Failed to store daily summary for ${city}:`, error);
       }
