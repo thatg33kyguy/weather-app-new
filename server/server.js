@@ -1,3 +1,13 @@
+
+
+
+require('dotenv').config();
+
+
+
+
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -17,7 +27,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],  // allowed methods
 }));
 
-require('dotenv').config();
+
 
 // MongoDB Atlas connection
 // const uri = process.env.MONGO_URI
