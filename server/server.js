@@ -26,13 +26,11 @@ const mongoose = require('mongoose');
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('✅ MongoDB connected'))
-.catch(err => {
-  console.error('❌ MongoDB connection error:', err);
-  process.exit(1);
+  useUnifiedTopology: true,
+  ssl: true,
+  tlsAllowInvalidCertificates: true, // helps bypass some SSL errors in cloud environments
 });
+
 
 // mongoose.connect(uri);
 
