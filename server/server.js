@@ -28,7 +28,7 @@ mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   ssl: true,
-  tlsAllowInvalidCertificates: true, // helps bypass some SSL errors in cloud environments
+  tlsAllowInvalidCertificates: false, // helps bypass some SSL errors in cloud environments
 });
 
 
