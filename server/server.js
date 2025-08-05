@@ -1,13 +1,3 @@
-
-
-
-require('dotenv').config();
-
-
-
-
-
-
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -22,47 +12,14 @@ const axios = require('axios');
 
 const app = express();
 app.use(bodyParser.json());
-const allowedOrigins = [
-  'http://localhost:3000',
-  'https://rajprateem-naths-projects.vercel.app'
-];
-
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-}));
-
-
-
+app.use(cors());
+require('dotenv').config();
 
 // MongoDB Atlas connection
-// const uri = process.env.MONGO_URI
-// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-const uri = process.env.MONGO_URI;
-// const mongoose = require('mongoose');
-
-// const uri = process.env.MONGO_URI;
-
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  ssl: true,
-  tlsAllowInvalidCertificates: true,  // Set this to true if you're facing SSL issues
-}).then(() => {
-  console.log('MongoDB connected successfully');
-}).catch((error) => {
-  console.error('Error connecting to MongoDB:', error);
-});
+const uri = process.env.MONGO_URI
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
-// mongoose.connect(uri);
 
 
 
@@ -74,12 +31,10 @@ const checkWeatherAndAlerts = async () => {
     const weatherData = await fetchWeatherData();
     await checkAlertsAndNotify(weatherData);
   };
-
-  //NEWLY ADDED//
+    //NEWLY ADDED//
   app.get('/', (req, res) => {
   res.send('🌦️ Weather API is running!');
 });
-
 
 module.exports = app 
 
@@ -89,8 +44,6 @@ if (require.main === module) {
       console.log(`Server is running on port ${port}`);
     });
   }
-
-  const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8080';
 
 const fetchAndStoreDailySummaries = async () => {
     const weatherData = await fetchStoredWeatherData()
@@ -118,8 +71,7 @@ const fetchAndStoreDailySummaries = async () => {
     for (const [city, data] of Object.entries(cityGroupedData)) {
       const dailySummary = calculateDailySummary(data);
       try {
-     await axios.post(`${process.env.API_BASE_URL}/api/dailySummary`, dailySummary);
-
+        await axios.post('http://localhost:8080/api/dailySummary', dailySummary);
       } catch (error) {
         console.error(`Failed to store daily summary for ${city}:`, error);
       }
