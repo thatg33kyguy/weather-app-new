@@ -16,10 +16,13 @@ app.use(cors());
 require('dotenv').config();
 
 // MongoDB Atlas connection
-const uri = process.env.MONGO_URI
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// const uri = process.env.MONGO_URI
+// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+const uri = process.env.MONGO_URI;
+mongoose.connect(uri);
 
+// mongoose.connect(uri);
 
 
 
