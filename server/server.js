@@ -22,10 +22,22 @@ const axios = require('axios');
 
 const app = express();
 app.use(bodyParser.json());
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://rajprateem-naths-projects.vercel.app'
+];
+
 app.use(cors({
-  origin: 'https://rajprateem-naths-projects.vercel.app',  // your frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // allowed methods
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
 }));
+
 
 
 
