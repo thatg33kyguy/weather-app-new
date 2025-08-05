@@ -12,7 +12,11 @@ const axios = require('axios');
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://rajprateem-naths-projects.vercel.app',  // your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // allowed methods
+}));
+
 require('dotenv').config();
 
 // MongoDB Atlas connection
@@ -28,7 +32,11 @@ mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   ssl: true,
-  tlsAllowInvalidCertificates: false, // helps bypass some SSL errors in cloud environments
+  tlsAllowInvalidCertificates: true,  // Set this to true if you're facing SSL issues
+}).then(() => {
+  console.log('MongoDB connected successfully');
+}).catch((error) => {
+  console.error('Error connecting to MongoDB:', error);
 });
 
 

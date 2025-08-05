@@ -9,18 +9,23 @@ router.post('/', async (req, res) => {
     await weatherData.save();
     res.status(201).send(weatherData);
   } catch (error) {
-    res.status(400).send(error);
+    console.error('Error saving weather data:', error);  // Log error to console
+    res.status(400).send({ message: 'Error saving weather data', error });  // Send more detailed error message
   }
 });
+
 
 // Route to get weather data (example, can be customized as needed)
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
+  const weatherData = new Weather(req.body);
   try {
-    const weatherData = await Weather.find();
-    res.status(200).send(weatherData);
+    await weatherData.save();
+    res.status(201).send(weatherData);
   } catch (error) {
-    res.status(400).send(error);
+    console.error('Error saving weather data:', error);  // Log error to console
+    res.status(400).send({ message: 'Error saving weather data', error });  // Send more detailed error message
   }
 });
 
-module.exports = router;
+
+module.exports= router;
