@@ -35,6 +35,12 @@ const checkWeatherAndAlerts = async () => {
     await checkAlertsAndNotify(weatherData);
   };
 
+  //NEWLY ADDED//
+  app.get('/', (req, res) => {
+  res.send('🌦️ Weather API is running!');
+});
+
+
 module.exports = app 
 
 if (require.main === module) {
