@@ -27,7 +27,7 @@ const checkAlerts = async (weatherData) => {
 const sendAlert = async (alert) => {
   console.log(`ALERT: ${alert.city} - ${alert.message}`);
 
-  const recipientEmail = 'priyanshujayant3121@gmail.com';
+  const recipientEmail = 'rajprateemnath101@gmail.com';
   const subject = `Weather Alert for ${alert.city}`;
   const text = `Alert: ${alert.message}`;
 
