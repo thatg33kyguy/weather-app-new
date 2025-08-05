@@ -50,6 +50,8 @@ if (require.main === module) {
     });
   }
 
+  const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8080';
+
 const fetchAndStoreDailySummaries = async () => {
     const weatherData = await fetchStoredWeatherData()
     //console.log(JSON.stringify(weatherData));
@@ -76,7 +78,7 @@ const fetchAndStoreDailySummaries = async () => {
     for (const [city, data] of Object.entries(cityGroupedData)) {
       const dailySummary = calculateDailySummary(data);
       try {
-        await axios.post('http://localhost:8080/api/dailySummary', dailySummary);
+       await axios.post(`${API_BASE_URL}/api/dailySummary`, dailySummary);
       } catch (error) {
         console.error(`Failed to store daily summary for ${city}:`, error);
       }
