@@ -39,9 +39,12 @@ const DailySummary = require('../schema/DailySummary');
 // Route to get all daily summaries for a specific city
 router.get('/:city', async (req, res) => {
   try {
-    const city = req.params.city.toLowerCase();
+    const city = req.params.city;
+const summaries = await DailySummary.find({
+  city: { $regex: new RegExp(`^${city}$`, 'i') }
+});
 
-    const summaries = await DailySummary.find({ city: city });
+
 
     if (summaries.length === 0) {
       return res.status(404).json({ message: 'No summaries found for this city' });
