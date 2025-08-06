@@ -23,4 +23,37 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Route to get weather by city
+router.get('/:city', async (req, res) => {
+  const city = req.params.city.toLowerCase();
+
+  try {
+    const weatherData = await Weather.findOne({ city: { $regex: new RegExp(`^${city}$`, 'i') } });
+
+    if (!weatherData) {
+      return res.status(404).json({ error: 'Weather data not found for this city' });
+    }
+
+    res.status(200).json(weatherData);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+router.get('/api/weather/:city', async (req, res) => {
+  try {
+    const cityName = req.params.city.toLowerCase();
+    const weatherData = await Weather.findOne({ city: cityName });
+
+    if (!weatherData) {
+      return res.status(404).json({ error: 'City not found' });
+    }
+
+    res.json(weatherData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 module.exports = router;

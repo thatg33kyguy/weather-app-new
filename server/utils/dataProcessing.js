@@ -6,7 +6,7 @@ require('dotenv').config();
 const fetchStoredWeatherData = async () => {
     console.log("Fetching Stored Weather Data")
     try {
-    const response = await axios.get('http://localhost:8080/api/weather');
+    const response = await axios.get('http://localhost:3000/api/weather');
 
         console.log(JSON.stringify(response.data));
         return response.data;
