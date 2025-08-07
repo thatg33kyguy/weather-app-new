@@ -1,4 +1,4 @@
-const axios = require('axios');
+  const axios = require('axios');
 const weather = require('../schema/Weather')
 
 require('dotenv').config();
@@ -6,10 +6,14 @@ require('dotenv').config();
 const fetchStoredWeatherData = async () => {
     console.log("Fetching Stored Weather Data")
     try {
-    const response = await axios.get('http://localhost:3000/api/weather');
+    // const response = await axios.get('http://localhost:3000/api/weather');
 
-        console.log(JSON.stringify(response.data));
-        return response.data;
+    //     console.log(JSON.stringify(response.data));
+    //     return response.data;
+    const data = await weather.find(); // ← Direct DB query using Mongoose
+console.log("Fetched stored weather data:", data);
+return data;
+
     } catch (error) {
       console.error('Error fetching stored weather data:', error);
       return [];

@@ -9,6 +9,6 @@ const dailySummarySchema = new mongoose.Schema({
   dominant_condition: String
 });
 
-const DailySummary = mongoose.model('DailySummary', dailySummarySchema);
+const dailySummary = mongoose.model('DailySummary', dailySummarySchema);
 
-module.exports = DailySummary;
+module.exports = dailySummary;

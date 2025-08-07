@@ -1,71 +1,48 @@
-// const express = require('express');
-// const router = express.Router();
-// const DailySummary = require('../schema/DailySummary');
 
-// // Route to get daily summaries for a specific city
-// router.get('/:city', async (req, res) => {
-//   try {
-//     const city = req.params.city;
-//     const summaries = await DailySummary.find({ city });
-//     console.log("PRINTING DAILY SUMMARY OF THE CITY "+ city)
-//     console.log(JSON.stringify(summaries));
-//     res.json(summaries);
-//   } catch (error) {
-//     res.status(500).send('Server error');
-//   }
-// });
 
-// Route to post a daily summary
-// router.post('/', async (req, res) => {
-//   try {
-//     console.log("Saving Daily Summary ")
-//     const summary = new DailySummary(req.body);
-//     await summary.save();
-//     res.status(201).json(summary);
-//   } catch (error) {
-//     res.status(500).send('Server error');
-//   }
-// });
+
+
+
+
 
 // module.exports = router;
-
-
-
-
 const express = require('express');
 const router = express.Router();
-const DailySummary = require('../schema/DailySummary');
+const DailySummary = require('../schema/dailySummary');
 
-// Route to get all daily summaries for a specific city
+// Utility: Escape RegExp characters to avoid injection or invalid patterns
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
+
+// GET all daily summaries for a specific city (case-insensitive)
 router.get('/:city', async (req, res) => {
   try {
     const city = req.params.city;
-const summaries = await DailySummary.find({
-  city: { $regex: new RegExp(`^${city}$`, 'i') }
-});
-
-
-
-    if (summaries.length === 0) {
-      return res.status(404).json({ message: 'No summaries found for this city' });
-    }
-
-    res.json(summaries);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const summaries = await DailySummary.find({ city }).sort({ date: -1 }).limit(7); // e.g., last 7 days
+    res.status(200).json(summaries);
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching daily summaries' });
   }
 });
 
-
-// Route to post a daily summary
+// POST a new daily summary
 router.post('/', async (req, res) => {
   try {
-    console.log("Saving Daily Summary ")
+    console.log('Saving Daily Summary:', req.body);
+
+    // Optional: Validate required fields if you have a schema
+    if (!req.body.city || !req.body.date ) {
+      return res.status(400).json({ message: 'Missing required fields: city, date' });
+    }
+
     const summary = new DailySummary(req.body);
     await summary.save();
+
     res.status(201).json(summary);
   } catch (error) {
-    res.status(500).send('Server error');
+    console.error('Error saving daily summary:', error);
+    res.status(500).json({ message: 'Server error while saving summary' });
   }
 });
 
