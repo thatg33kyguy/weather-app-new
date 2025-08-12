@@ -1,13 +1,7 @@
 import axios from 'axios';
 
-<<<<<<< HEAD
 // Read API base URL from environment variable
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-=======
-// const API_BASE_URL = 'http://localhost:8080'; // Adjust to your backend URL
-const API_BASE_URL = 'https://weather-app-kebd.onrender.com';
-
->>>>>>> aafd834 (changed api.js)
 
 // API calls
 export const getDailySummaries = (city) =>

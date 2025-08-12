@@ -40,20 +40,6 @@ router.get('/:city', async (req, res) => {
   }
 });
 
-// router.get('/api/weather/:city', async (req, res) => {
-//   try {
-//     const cityName = req.params.city.toLowerCase();
-//     const weatherData = await Weather.findOne({ city: cityName });
 
-//     if (!weatherData) {
-//       return res.status(404).json({ error: 'City not found' });
-//     }
-
-//     res.json(weatherData);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: 'Server error' });
-//   }
-// });
 
 module.exports = router;
