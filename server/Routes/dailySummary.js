@@ -1,45 +1,32 @@
+// const express = require('express');
 const express = require('express');
+// const router = express.Router();
 
 const router = express.Router();
-const DailySummary = require('../schema/DailySummary'); // keep PascalCase since it's a model
+const DailySummary = require('../schema/DailySummary');
 
-// GET all daily summaries
-router.get('/', async (req, res) => {
-  try {
-    const summaries = await DailySummary.find().sort({ date: -1 });
-    res.status(200).json(summaries);
-  } catch (error) {
-    res.status(500).json({ error: 'Error fetching all daily summaries' });
-  }
-});
-
-// GET daily summaries for a specific city
+// Route to get daily summaries for a specific city
 router.get('/:city', async (req, res) => {
   try {
     const city = req.params.city;
-    const summaries = await DailySummary.find({ city }).sort({ date: -1 }).limit(7);
-    res.status(200).json(summaries);
+    const summaries = await DailySummary.find({ city });
+    console.log("PRINTING DAILY SUMMARY OF THE CITY "+ city)
+    console.log(JSON.stringify(summaries));
+    res.json(summaries);
   } catch (error) {
-    res.status(500).json({ error: 'Error fetching daily summaries' });
+    res.status(500).send('Server error');
   }
 });
 
-// POST a new daily summary
+// Route to post a daily summary
 router.post('/', async (req, res) => {
   try {
-    console.log('Saving daily Summary:', req.body);
-
-    if (!req.body.city || !req.body.date) {
-      return res.status(400).json({ message: 'Missing required fields: city, date' });
-    }
-
+    console.log("Saving Daily Summary ")
     const summary = new DailySummary(req.body);
     await summary.save();
-
     res.status(201).json(summary);
   } catch (error) {
-    console.error('Error saving daily summary:', error);
-    res.status(500).json({ message: 'Server error while saving summary' });
+    res.status(500).send('Server error');
   }
 });
 
