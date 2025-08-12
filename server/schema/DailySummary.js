@@ -12,3 +12,6 @@ const dailySummarySchema = new mongoose.Schema({
 const DailySummary = mongoose.model('DailySummary', dailySummarySchema);
 
 module.exports = DailySummary;
+
+
+//latest commit
