@@ -47,7 +47,14 @@ const fetchWeatherData = async () => {
     }))
     console.log("Saving weather data ************")
     console.log(saveWeatherData)
-  await weather.insertMany(saveWeatherData);
+  for (const data of saveWeatherData) {
+  await weather.findOneAndUpdate(
+    { city: data.city, dt: data.dt },  // match city + timestamp
+    data,
+    { upsert: true, new: true }
+  );
+}
+
  
   return WeatherData;
 } catch (error) {
