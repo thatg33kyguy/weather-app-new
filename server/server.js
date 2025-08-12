@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+// const cors = require('cors');
 const weatherRouter = require('./Routes/weather');
 const schedule = require('node-schedule');
 const dailySummaryRouter = require('./Routes/dailySummary');
@@ -18,10 +18,15 @@ app.use(express.json());
 
 // In Express backend
 // const cors = require('cors');
+const cors = require('cors');
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: [
+    'http://localhost:3000',
+    'https://weather-app-tau-rouge-91.vercel.app'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 
 
