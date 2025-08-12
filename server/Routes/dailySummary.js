@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const DailySummary = require('../schema/dailySummary'); // keep PascalCase since it's a model
+const DailySummary = require('./schema/DailySummary'); // keep PascalCase since it's a model
 
 // GET all daily summaries
 router.get('/', async (req, res) => {
