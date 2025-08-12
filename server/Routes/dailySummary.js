@@ -8,7 +8,7 @@
 // module.exports = router;
 const express = require('express');
 const router = express.Router();
-const dailySummary = require('./schema/dailySummary');
+const dailySummary = require('../schema/dailySummary');
 
 // Utility: Escape RegExp characters to avoid injection or invalid patterns
 function escapeRegex(text) {

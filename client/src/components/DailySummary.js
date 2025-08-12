@@ -32,7 +32,7 @@ const DailySummary = () => {
 
   return (
     <div className="container">
-      <h2 className="header">Daily Weather Summaries</h2>
+      <h2 className="header">Daily Weather Summary</h2>
       {loading ? (
         <p className="loading">Loading...</p>
       ) : (
