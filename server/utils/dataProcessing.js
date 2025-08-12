@@ -2,7 +2,7 @@
 const weather = require('../schema/Weather')
 
 require('dotenv').config();
-console.log('Maksudu')
+
 const fetchStoredWeatherData = async () => {
     console.log("Fetching Stored Weather Data")
     try {
@@ -10,9 +10,7 @@ const fetchStoredWeatherData = async () => {
 
         console.log(JSON.stringify(response.data));
         return response.data;
-//     const data = await weather.find().lean(); // ← Direct DB query using Mongoose
-// console.log("Fetched stored weather data:", data);
-// return data;
+
 
     } catch (error) {
       console.error('Error fetching stored weather data:', error);
