@@ -19,11 +19,11 @@ app.use(express.json());
 // In Express backend
 // const cors = require('cors');
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  
 }));
+
 
 
 require('dotenv').config();
@@ -85,7 +85,8 @@ const fetchAndStoreDailySummaries = async () => {
     for (const [city, data] of Object.entries(cityGroupedData)) {
       const dailySummary = calculateDailySummary(data);
       try {
-        await axios.post('http://localhost:8080/api/dailySummary', dailySummary);
+        await axios.post(`${process.env.API_BASE_URL}/api/dailySummary`, dailySummary);
+
       } catch (error) {
         console.error(`Failed to store daily summary for ${city}:`, error);
       }
