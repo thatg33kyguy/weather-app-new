@@ -30,7 +30,7 @@ require('dotenv').config();
 
 // MongoDB Atlas connection
 const uri = process.env.MONGO_URI
-mongoose.connect(uri).then(() => console.log('✅ Connected to MongoDB'))
+mongoose.connect(uri).then(() => console.log('✅ Connected to MongoDB successfully!'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
 
