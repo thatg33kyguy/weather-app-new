@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 const DailySummary = require('../schema/DailySummary'); // keep PascalCase since it's a model
 
