@@ -12,7 +12,7 @@ const axios = require('axios');
 
 
 // const Weather = require('./schema/Weather');
-const dailySummary = require('../schema/dailySummary');
+// const dailySummary = require('../schema/dailySummary');
 
 
 const app = express();

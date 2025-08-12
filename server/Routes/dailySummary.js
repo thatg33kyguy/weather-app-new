@@ -41,7 +41,7 @@ router.get('/:city', async (req, res) => {
 // POST a new daily summary
 router.post('/', async (req, res) => {
   try {
-    console.log('Saving Daily Summary:', req.body);
+    console.log('Saving daily Summary:', req.body);
 
     // Optional: Validate required fields if you have a schema
     if (!req.body.city || !req.body.date ) {
