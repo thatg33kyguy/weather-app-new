@@ -1,4 +1,7 @@
 # Node modules
-node_modules/
+
 # Environment variables
 .env
+# node_modules cache
+node_modules/
+**/.cache/
