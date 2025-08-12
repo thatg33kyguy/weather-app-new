@@ -15,11 +15,7 @@ const app = express();
 app.use(bodyParser.json());
 // // app.use(cors());
 // const cors = require('cors');
-app.use(cors({
-  origin: process.env.FRONTEND_URL,
-  methods: ['GET','POST','PUT','DELETE'],
-  credentials: true
-}));
+app.use(cors({ origin: true }));
 
 require('dotenv').config();
 

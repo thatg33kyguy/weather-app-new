@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-   "scripts": {
-    "start": "node server.js",
+  "scripts": {
+    "start": "nodemon server.js",
     "test": "jest"
   },
   "keywords": [],
@@ -24,7 +24,7 @@
   "devDependencies": {
     "jest": "^29.7.0",
     "mongodb-memory-server": "^10.0.0",
-    "mongoose": "^8.17.0"
+    "mongoose": "^8.17.0",
+    "nodemon": "^3.1.10"
   }
-  
 }
