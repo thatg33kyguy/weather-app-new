@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import './HistoricalTrends.css'; // Import the CSS file
 
-const cities = ['Delhi', 'Mumbai', 'Chennai', 'Bangalore', 'Kolkata', 'Hyderabad'];
+const cities = ['Delhi', 'Mumbai', 'Chennai', 'Bengaluru', 'Kolkata', 'Hyderabad'];
 
 const HistoricalTrends = () => {
   const [data, setData] = useState({});
