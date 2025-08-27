@@ -25,4 +25,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+//new:
+// Route to get latest weather data
+router.get('/', async (req, res) => {
+  try {
+    const latestWeather = await Weather.findOne().sort({ createdAt: -1 }); // latest entry
+    res.status(200).send(latestWeather);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+
 module.exports = router;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getDailySummaries } from '../api';
 import './DailySummary.css'; // Import the CSS file
 
-const cities = ['Delhi', 'Mumbai', 'Chennai', 'Bangalore', 'Kolkata', 'Hyderabad'];
+const cities = ['Delhi', 'Mumbai', 'Chennai', 'Bengaluru', 'Kolkata', 'Hyderabad'];
 
 const DailySummary = () => {
   const [summaries, setSummaries] = useState({});

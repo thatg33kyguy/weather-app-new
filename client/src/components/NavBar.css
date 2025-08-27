@@ -1,4 +1,4 @@
-/* Navbar.css */
+/* Navbar.css
 nav {
     background-color: #333;
     padding: 10px 20px;
@@ -34,4 +34,82 @@ nav {
     color: #4caf50;
     font-weight: bold;
   }
-  
+   */
+
+
+   /* Navbar.css */
+nav {
+  background: linear-gradient(90deg, #333, #222);
+  padding: 12px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px; /* cleaner spacing than margin */
+}
+
+li {
+  position: relative; /* enables underline animation */
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 6px 10px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover {
+  color: #4caf50;
+  transform: translateY(-2px);
+}
+
+/* animated underline on hover */
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background: #4caf50;
+  transition: width 0.3s ease;
+}
+
+a:hover::after,
+a.active::after {
+  width: 100%;
+}
+
+a.active {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+/* Responsive navbar */
+@media (max-width: 768px) {
+  nav {
+    justify-content: flex-start;
+  }
+
+  ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  li {
+    margin: 5px 0;
+  }
+}

@@ -1,4 +1,4 @@
-body {
+/* body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -31,4 +31,80 @@ nav a:hover {
 
 h2 {
   color: #333;
+} */
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #74ebd5, #ACB6E5); /* nice sky-like gradient */
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Navbar */
+nav {
+  background: rgba(0, 0, 0, 0.75);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+nav li {
+  margin-right: 1.5rem;
+}
+
+nav a {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #74ebd5; /* highlight color */
+}
+
+/* Heading */
+h2 {
+  margin: 1.5rem 0;
+  text-align: center;
+  font-size: 2rem;
+  color: #222;
+}
+
+/* Weather Card */
+.weather-card {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.weather-card:hover {
+  transform: translateY(-5px);
+}
+
+.weather-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.weather-card p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
 }
